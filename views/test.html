@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <style>
+        img {
+            height : 100% ;
+            width : auto ;
+        }
+        #imagepanel {
+            position : relative ;
+        }
+        #showpanel {
+            position : absolute ;
+            bottom : 10px ;
+            width : 100% ;
+        }
+        #imageblock {
+            position : relative ;
+        }
+        #leftarrow {
+            position : absolute ;
+            top : 10px ;
+        }
+        #rightarrow {
+            position : absolute ;
+            top : 0px ;
+            right : 10px ;
+        }
+    </style>    
+<title>Document</title>
+</head>
+<body class = "container px-2">
+    <div class="row overflow-hidden gx-3">
+        <div class="col-md-9" id = "informationpart">
+            <div class = "d-flex flex-column" id="imageblock">
+            <div id = "imagepanel" class = "mx-auto">
+            <img src="../public/1.jpg" alt="">
+            <img src="../public/2.jpg" alt="" style = "display : none ;">
+            <img src="../public/4.jpg" alt="" style = "display : none ;">
+            <img src="../public/5.jpg" alt="" style = "display : none ;">
+            <div class = "d-flex" id = "showpanel">
+                <div class="mx-auto d-flex" id="showicons">
+                    <div class = "mx-1" style = "width : 10px ; height : 10px ; border-radius : 10px ; background-color:  white;"></div>
+                    <div class = "mx-1" style = "width : 10px ; height : 10px ; border-radius : 10px ; background-color: black;"></div>
+                    <div class = "mx-1" style = "width : 10px ; height : 10px ; border-radius : 10px ; background-color: black;"></div>
+                    <div class = "mx-1" style = "width : 10px ; height : 10px ; border-radius : 10px ; background-color: black;"></div>
+                </div>
+            </div>
+            </div>
+        <div id="leftarrow" class = "d-flex align-items-center" style = "height : 100% ;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" fill="currentColor" class="bi bi-arrow-left-circle-fill" viewBox="0 0 16 16">
+                <path d="M8 0a8 8 0 1 0 0 16A8 8 0 0 0 8 0zm3.5 7.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z"/>
+              </svg></div>
+        <div id="rightarrow" class = "d-flex align-items-center" style = "height : 100% ;"><svg xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" fill="currentColor" class="bi bi-arrow-right-circle-fill" viewBox="0 0 16 16">
+                <path d="M8 0a8 8 0 1 1 0 16A8 8 0 0 1 8 0zM4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H4.5z"/>
+              </svg></div>
+        </div>
+        <p>Indian Institute of Technology Bhubaneswar, one of hte premier institutes of India, is a fully residential
+            institute. This is made possible by 5 hostles. Two for girls(Ganga Hall of Residence, Subernarekha Hall of Residence) and 
+            3 for boys(Mahanadi Hall of Residence, Brahmaputra Hall of Residence and RHR).
+        </p>
+    </div>
+        <div class="col-md-3 p-3">
+            <div>
+                <h3 class = "text-primary border-bottom border-4 border-primary p-2">Quick Links</h3>
+                <div class="d-flex flex-column list-group">
+                    <a href="/" class="list-group-item">lorem</a>
+                    <a href="/" class="list-group-item">lorem</a>
+                    <a href="/" class="list-group-item">lorem</a>
+                    <a href="/" class="list-group-item">lorem</a>
+                    <a href="/" class="list-group-item">lorem</a>
+                    <a href="/" class="list-group-item">lorem</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let panel = document.getElementById('informationpart') ;
+        let leftarrow = document.getElementById('leftarrow') ;
+        let rightarrow = document.getElementById('rightarrow') ;
+        let panelwidth = panel.clientWidth ;
+        let panelheight = (panelwidth*2)/4 ;
+        let images = document.querySelectorAll('#imagepanel img') ;
+        let showicons = document.querySelectorAll('#showicons div') ;
+        window.addEventListener('resize', () => {
+            let panelwidth = panel.clientWidth ;
+            let panelheight = (panelwidth*2)/4 ;
+            document.getElementById('imagepanel').style.height = `${panelheight}px` ;
+        })
+        let count = images.length ;
+        let current = 0 ;
+        function imagehandling() {
+            if(current+1 == count) {
+                images[current].style.display = "none" ;
+                showicons[current].style.backgroundColor = "black" ;
+                current = 0 ;
+                images[current].style.display = "block" ;
+                showicons[current].style.backgroundColor = "white" ;
+            }
+            else {
+                images[current].style.display = "none" ;
+                showicons[current].style.backgroundColor = "black" ;
+                current = current + 1 ;
+                images[current].style.display = "block" ;
+                showicons[current].style.backgroundColor = "white" ;
+            }
+        }
+        document.getElementById('imagepanel').style.height = `${panelheight}px` ;
+        window.setInterval(imagehandling , 3000) ;
+        rightarrow.addEventListener('click', imagehandling) ;
+        leftarrow.addEventListener('click', () => {
+            if(current-1 == -1) {
+                images[current].style.display = "none" ;
+                showicons[current].style.backgroundColor = "black" ;
+                current = images.length-1 ;
+                images[current].style.display = "block" ;
+                showicons[current].style.backgroundColor = "white" ;
+            }
+            else {
+                images[current].style.display = "none" ;
+                showicons[current].style.backgroundColor = "black" ;
+                current = current - 1 ;
+                images[current].style.display = "block" ;
+                showicons[current].style.backgroundColor = "white" ;
+            }
+        }) ;
+    </script>
+</body>
+</html>

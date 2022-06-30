@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="/style.css">
+    <title>Document</title>
+</head>
+<body class = "container-md">
+<div>
+    <div class="mx-auto my-3 text-light" style = "width : 50% ;" id="tologin">
+        <p class = "bg-secondary p-3"><span id="loginbutton" style = "text-decoration : underline ; cursor: pointer;">login</span> with your institute mailid.</p>
+    </div>
+    <div class="mx-auto my-3 text-light" style = "width : 50% ; display : none" id = "loggedin">
+        <p class = "bg-success p-3" id="loggedinmessage"></p>
+    </div>
+    <form action="/complain/complaint" method = "POST" class="d-flex flex-column justify-content-center mx-auto" style = "width : 50% ;">
+        <label for="complaint"><b>Complaint</b></label>
+        <textarea name="complaintstatement" id="complaint" disabled style = "height : 100px ;" class = "p-1 mb-3">
+        </textarea>
+        <label for="usersolution"><b>What do you think</b></label>
+        <textarea name="useridea" id="usersolution" disabled style = "height : 100px ;" class = "p-1 mb-3">
+        </textarea>
+        <button class = "btn btn-success" disabled id = "submitbutton">complain</button>
+    </form>
+</div>
+<script>
+    var authorized = '<%- authorized %>' ;
+    if(authorized == 'true') {
+        var name = '<%- name %>' ;
+        document.getElementById('tologin').style.display = "none" ;
+        document.getElementById('loggedin').style.display = "block" ;
+        var a = document.getElementById('loggedinmessage') ;
+        a.innerText = `Welcome ${name}` ;
+        document.getElementById('complaint').disabled = false ;
+        document.getElementById('usersolution').disabled = false ;
+        document.getElementById('submitbutton').disabled = false ;
+}
+    else {
+        document.getElementById('tologin').style.display = "block" ;
+        document.getElementById('loggedin').style.display = "none" ;
+    }
+    var loginbutton = document.getElementById('loginbutton') ;
+    loginbutton.addEventListener('click', () => {
+        window.open('http://localhost:3000/complain/login', "myWin2", "toolbar=yes, scrollbars=yes, resizable=yes, height=590,width=1200");
+    })
+</script>
+<script src = "index.js"></script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+* {
+    padding : 0px ;
+    margin : 0px ;
+}
+
+#navigation {
+    position : sticky ;
+    top : 0px ;
+}
+
+@media screen and (max-width: 720px) {
+    #navigationbar {
+        display : none ;
+    }
+}
+
+@media screen and (min-width : 720px) {
+    #navigationbar {
+        display : block ;
+    }
+    #sidepallett {
+        
+    }
+    #sidepallettelements {
+        position : absolute ;
+        top : 100% ;
+    }
+}
+
+#hostelofficials:hover {
+    background-color : blue ;
+}
+
+#navigationbar a:hover {
+    background-color : blue ;
+}
+
+
+#hostelofficials {
+    cursor : pointer ;
+}
